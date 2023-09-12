@@ -20,11 +20,28 @@ class GraphNode
         end
     end
 
+
+
     def bfs(starting_node, target)
-        p self.value
-        starting_node.neighbors.each do |n|
-            n.bfs(n, target)
+        queue = [starting_node]
+        visited = []
+
+        until queue.empty?
+
+            current_node = queue.shift
+            
+            visited << current_node
+
+            return current_node if current_node.val == target
+
+            current_node.neighbors.each do |node|
+                unless visited.include?(node)
+                    queue << node
+                end
+
+            end
         end
+        nil
     end
 
     
